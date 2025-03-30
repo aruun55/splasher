@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Splasher - Senior Assassin Game</title>
-    <meta name="description" content="Splasher is the ultimate app for fun, strategy and unforgettable moments with friends.">
+    <meta name="description" content="Splasher is the ultimate app for fun, strategy, and unforgettable moments with friends.">
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
     <style>
         :root {
@@ -14,13 +14,11 @@
             --light-gray: #f5f5f5;
             --medium-gray: #dddddd;
         }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: white;
@@ -32,107 +30,53 @@
             min-height: 100vh;
             padding: 20px;
             line-height: 1.5;
+            text-align: center;
         }
-        
         .content-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px;
+            max-width: 600px;
             width: 100%;
             animation: fadeIn 0.8s ease-out;
         }
-        
-        .logo-container {
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-container:hover {
-            transform: scale(1.03);
-        }
-        
-        .logo {
+        .logo-container img {
             width: 180px;
-            height: auto;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            margin-bottom: 1.5rem;
         }
-        
-        .description {
-            text-align: center;
+        .image-preview img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
-            color: var(--secondary);
-            max-width: 300px;
-            font-size: 1rem;
         }
-        
+        .description {
+            color: var(--secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
         .download-buttons {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 1rem;
         }
-        
-        .download-btn {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 12px;
-        }
-        
-        .download-btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
         .download-btn img {
             height: 50px;
-            width: auto;
             border-radius: 10px;
         }
-        
         .legal {
             font-size: 0.75rem;
             color: var(--secondary);
-            text-align: center;
             margin-top: 2rem;
-            width: 100%;
         }
-        
-        .legal-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 0.75rem;
-        }
-        
         .legal-links a {
             color: var(--secondary);
             text-decoration: none;
             transition: color 0.2s;
             font-size: 0.7rem;
         }
-        
         .legal-links a:hover {
             color: var(--accent);
             text-decoration: underline;
         }
-        
-        @media (max-width: 480px) {
-            .logo {
-                width: 150px;
-            }
-            
-            .download-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .download-btn img {
-                height: 45px;
-            }
-        }
-        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -142,11 +86,12 @@
 <body>
     <div class="content-wrapper">
         <div class="logo-container">
-            <img src="assets/logo.svg" alt="Splasher" class="logo">
+            <img src="assets/logo.svg" alt="Splasher">
         </div>
-        
-        <p class="description">Splasher is the ultimate app for fun, strategy and unforgettable moments with friends.</p>
-        
+        <p class="description">Splasher is the ultimate app for fun, strategy, and unforgettable moments with friends.</p>
+        <div class="image-preview">
+            <img src="Untitled design (3).png" alt="Splasher App Preview">
+        </div>
         <div class="download-buttons">
             <a href="#" class="download-btn">
                 <img src="assets/appstore1.png" alt="Download on App Store">
@@ -155,7 +100,6 @@
                 <img src="assets/playstore1.png" alt="Get on Google Play">
             </a>
         </div>
-        
         <div class="legal">
             <div>© 2025 Splasher. All rights reserved.</div>
             <div class="legal-links">
