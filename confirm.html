@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Your Email | Splasher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+        h1 {
+            color: #2c3e50;
+            flex: 1;
+            text-align: center;
+        }
+        p {
+            color: #34495e;
+        }
+        .loader {
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .retry-btn {
+            display: none;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .retry-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.svg" alt="Splasher Logo" class="logo">
+            <h1>Email Confirmation</h1>
+        </div>
+        <p>Verifying your email... Please wait.</p>
+        <div class="loader"></div>
+        <button class="retry-btn" onclick="confirmEmail()">Retry</button>
+    </div>
+
+    <script>
+        async function confirmEmail() {
+            const params = new URLSearchParams(window.location.search);
+            const accessToken = params.get('access_token');
+
+            if (accessToken) {
+                try {
+                    const response = await fetch(`https://splasher.app/api/auth/confirm?access_token=${encodeURIComponent(accessToken)}`);
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        document.querySelector(".container").innerHTML = "<h1>✅ Email Verified!</h1><p>Your email has been successfully confirmed. You can now log in.</p>";
+                        setTimeout(() => { window.location.href = '/login'; }, 3000);
+                    } else {
+                        throw new Error(data.error || "Email verification failed.");
+                    }
+                } catch (err) {
+                    document.querySelector(".container").innerHTML = `<h1>❌ Verification Failed</h1><p>${err.message}</p><button class="retry-btn" onclick="confirmEmail()">Retry</button>`;
+                    document.querySelector(".retry-btn").style.display = "inline-block";
+                }
+            } else {
+                document.querySelector(".container").innerHTML = "<h1>❌ Invalid Request</h1><p>No confirmation token found.</p>";
+            }
+        }
+
+        confirmEmail();
+    </script>
+</body>
+</html>
