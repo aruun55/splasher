@@ -108,5 +108,24 @@
             </div>
         </div>
     </div>
+    <script>
+              window.onload = function () {
+                if (window.location.hash) {
+                  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                  const accessToken = hashParams.get("access_token");
+                  const type = hashParams.get("type");
+            
+                  if (accessToken) {
+                    if (type === "recovery") {
+                      // Redirect to reset password page
+                      window.location.href = `/auth/reset-password?access_token=${accessToken}`;
+                    } else {
+                      // Redirect to email confirmation page
+                      window.location.href = `/auth/confirm?access_token=${accessToken}`;
+                    }
+                  }
+                }
+              };
+</script>
 </body>
 </html>
