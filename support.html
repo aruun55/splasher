@@ -69,9 +69,9 @@
         <h2>Support</h2>
         <p>If you are having any issues, please describe them below and we will get it resolved ASAP.</p>
 
-        <form id="supportForm">
-            <input type="email" id="email" placeholder="Email" required>
-            <textarea id="message" placeholder="Message" rows="4" required></textarea>
+         <form id="supportForm" action="mailto:teams@splasher.in" method="post" enctype="text/plain">
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Message" rows="4" required></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>
