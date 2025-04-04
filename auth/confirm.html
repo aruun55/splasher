@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm Your Email | Splasher</title>
+    <title>Email Verified | Splasher</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            background-color: #f4f9ff;
         }
         .container {
             max-width: 500px;
             margin: auto;
             padding: 20px;
             border-radius: 10px;
+            background: white;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
         .header {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .logo {
             width: 50px;
@@ -34,30 +36,23 @@
         p {
             color: #34495e;
         }
-        .loader {
-            margin: 20px auto;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
+        .success-icon {
+            font-size: 40px;
+            color: #27ae60;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .retry-btn {
-            display: none;
+        .return-btn {
             background-color: #3498db;
             color: white;
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
         }
-        .retry-btn:hover {
+        .return-btn:hover {
             background-color: #2980b9;
         }
     </style>
@@ -66,46 +61,11 @@
     <div class="container">
         <div class="header">
             <img src="../assets/logo.svg" alt="Splasher Logo" class="logo">
-            <h1>Email Confirmation</h1>
+            <h1>Email Verified</h1>
         </div>
-        <p id="message">Verifying your email... Please wait.</p>
-        <div class="loader" id="loader"></div>
-        <button class="retry-btn" id="retry-btn" onclick="confirmEmail()">Retry</button>
+        <div class="success-icon">✅</div>
+        <p>Your email has been successfully verified!<br>Please return to the app to log in.</p>
+        <a href="splasher://" class="return-btn">Return to App</a>
     </div>
-
-    <script>
-        async function confirmEmail() {
-            const params = new URLSearchParams(window.location.search);
-            const accessToken = params.get('access_token');
-
-            if (!accessToken) {
-                document.getElementById("message").innerHTML = "❌ Invalid Request.<br>No confirmation token found.";
-                document.getElementById("loader").style.display = "none";
-                return;
-            }
-
-            try {
-                // Use Supabase to check session and redirect if needed
-                const response = await fetch(`https://splasher.app/auth/confirm?access_token=${encodeURIComponent(accessToken)}`);
-                const data = await response.json();
-
-                if (response.ok) {
-                    document.getElementById("message").innerHTML = "✅ Email Verified!<br>You can now log in.";
-                    document.getElementById("loader").style.display = "none";
-
-                    // Redirect after 3 seconds
-                    setTimeout(() => { window.location.href = '/login'; }, 3000);
-                } else {
-                    throw new Error(data.error || "Email verification failed.");
-                }
-            } catch (err) {
-                document.getElementById("message").innerHTML = `❌ Verification Failed.<br>${err.message}`;
-                document.getElementById("loader").style.display = "none";
-                document.getElementById("retry-btn").style.display = "inline-block";
-            }
-        }
-
-        confirmEmail();
-    </script>
 </body>
 </html>
