@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account Deletion Requested - Splasher</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 min-h-screen flex items-center justify-center p-6">
+  <div class="w-full max-w-md bg-gray-100 rounded-2xl shadow-lg p-8 text-center">
+    <h1 class="text-2xl font-bold mb-4">Deletion Request Received</h1>
+    <p class="text-gray-700 text-sm">
+      Thank you. We've received your request to delete your account. Your account will be permanently deleted within 30 days.
+    </p>
+    <a href="https://splasher.app" class="inline-block mt-6 text-blue-600 hover:underline">Return to homepage</a>
+  </div>
+</body>
+</html>
